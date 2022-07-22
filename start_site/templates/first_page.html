@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+
+<body style="background-image: url('{%static "/img/backgr_1.jpg" %}')">
+    <div class = "block">
+        <div class="card m-2 me-2 opacity-1">
+          <div class="card-header">
+              <h4>О нас</h4>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Компания «Гарант-Сталь» – это современное производственное предприятие с полным циклом
+                металлообработки. Наша специализация – производство износостойких деталей из высокопрочных и
+                износостойких сталей (бронелистов).
+                Современное высокотехнологичное оборудование и многолетний опыт работы наших сотрудников с износостойкими
+                сталями позволяют изготавливать изделия любой сложности и срочности.
+              <p>Мы производим износостойкие детали:</p>
+              <p>- в единичном и серийном количестве;</p>
+              <p>- в кратчайшие сроки;</p>
+              <p>- по чертежам и эскизам Заказчика, а при их отсутствии наш конструкторский отдел произведёт замеры
+                  по образцу и разработает чертежи для производства;</p>
+              <p>- по ценам от производителя.</p>
+              <p>Высокое качество продукции, цены от производителя в сочетании с высоким уровнем сервиса – преимущества
+                  при сотрудничестве с компанией «Гарант-Сталь» в вопросах поставок износостойких деталей из
+                  высокопрочных сталей.
+            </p></p>
+
+    </div>
+    </div>
+
+        <div class="card m-2 me-2 opacity-1">
+          <div class="card-header">
+              <h4>Преимущества от работы с нашей компанией</h4>
+          </div>
+          <div class="card-body">
+              <p>Собственное производство с полным циклом изготовления износостойких деталей</p>
+              <p>Инженерно-конструкторский отдел с многолетним опытом проектирования специального оборудования и техники</p>
+              <p>Возможность штучного изготовления и серийного производства изделий</p>
+              <p>Изготовление изделий любой сложности</p>
+              <p>Высокое качество продукции</p>
+              <p>Цены от производителя</p>
+              <p>Высокий уровень сервиса – персональный менеджер, технические консультации, инженерные услуги, возможность формирования склада готовых изделий под нужды Заказчика
+            </p>
+
+    </div>
+    </div>
+
+    <div class = "block">
+        <div class="card m-2 me-2 opacity-1">
+        <div class="card-header">
+            <h4>Каталог продукции</h4>
+          </div>
+       <div class="row row-cols-1 row-cols-sm-3 g-3">
+        {% for data in catalogs %}
+        <div class="col"><li><a href="catalog/{{ data.catalog_link }}">
+        <div class="card bg-dark text-light">
+          <img src='{%static data.catalog_image %}'  class="card-img opacity-75" alt="card-img-overlay">
+          <div class="card-img-overlay">
+            <h5 class="card-title">{{ data.catalog_name }}</h5>
+            <p class="card-text">{{data.catalog_description}}</p>
+          </div>
+        </div></a></li></div>
+        {% endfor %}
+        </div></div></div>
+
+    <div class="card m-2 me-2 opacity-100">
+          <div class="card-header">
+             <h4>Отправить запрос</h4>
+          </div>
+          <div class="card-body">
+            <form method="post">
+                 {% csrf_token %}
+          <!-- 2 column grid layout with text inputs for the first and last names -->
+                  <div class="row mb-4">
+            <div class="col">
+              <div class="form-outline">
+                <input type="text" id="form6Example1" class="form-control" name="name"/>
+                <label class="form-label" for="form6Example1" >Имя</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-outline">
+                <input type="text" id="form6Example2" class="form-control" name="lastname" />
+                <label class="form-label" for="form6Example2">Фамилия</label>
+              </div>
+            </div>
+          </div>
+
+                  <!-- Text input -->
+                  <div class="form-outline mb-4">
+                    <input type="text" id="form6Example3" class="form-control" name="companyname"/>
+                    <label class="form-label" for="form6Example3">Название компании</label>
+                  </div>
+
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <input type="email" id="form6Example5" class="form-control" name="email"/>
+                    <label class="form-label" for="form6Example5">Email</label>
+                  </div>
+
+                  <!-- Number input -->
+                  <div class="form-outline mb-4">
+                    <input type="number" id="form6Example6" class="form-control" name="phonenumber" />
+                    <label class="form-label" for="form6Example6">Телефон</label>
+                  </div>
+
+                  <!-- Message input -->
+                  <div class="form-outline mb-4">
+                    <textarea class="form-control" id="form6Example7" rows="4" name="textemail"></textarea>
+                    <label class="form-label" for="form6Example7">Опишите Ваш запрос</label>
+                  </div>
+
+                  <!-- Checkbox -->
+                  <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" name="selfsend" id="form6Example8"/>
+                    <label class="form-check-label" for="form6Example8"> Отправить копию запроса на Вашу почту? </label>
+                  </div>
+
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-dark btn-block mb-4">Отправить</button>
+        </form>
+          </div>
+    </div>
+<!--
+    <div id="carouselWithCaptions" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+          {% for data in catalogs %}
+          {% if forloop.counter == 1 %}
+        <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="active"></li>
+          {% else %}
+        <li data-bs-target="#carouselWithCaptions" data-bs-slide-to="{{ forloop.counter0 }}"></li>
+          {% endif %}
+          {% endfor %}
+      </ol>
+
+        <div class="carousel-inner">
+        {% for data in catalogs %}
+          {% if forloop.counter == 1 %}
+          <div class="carousel-item active">
+            <div class="card bg-dark text-light align-middle">
+              <img src='{%static data.catalog_image %}'  class="card-img" alt="card-img-overlay">
+              <div class="card-img-overlay align-center">
+                <h5 class="card-title">{{ data.name }}</h5>
+                <p class="card-text">{{data.description}}</p>
+                <p class="card-text">button</p>
+              </div>
+            </div>
+        </div>
+          {% else %}
+        <div class="carousel-item">
+           <div class="card">
+              <div class="row g-0">
+                <div class="col-5 col-sm-4">
+                  <img src='{%static data.picture %}' class="img-fluid w-100" alt="Картинка не найдена">
+                </div>
+                <div class="col-7 col-sm-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.name }}</h5>
+                        <p class="card-text"> {{ data.description }}</p>
+                        <p class="card-text"><small class="text-muted">Что-нибудь в футер если надо</small></p>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+        </div>
+          {% endif %}
+        {% endfor %}
+      <a class="carousel-control-prev" href="#carouselWithCaptions" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselWithCaptions" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+-->
+</body>
+{% endblock %}
+
+
+
+</html>

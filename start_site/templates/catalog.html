@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+{% extends "hf_template.html" %}
+{%load static%}
+{% block content %}
+
+<body style="background-image: url('{%static "/img/backgr_1.jpg" %}')">
+
+    <div class = "block">
+        <div class="card m-2 me-2 opacity-1">
+          <div class="card-header">
+             <h4>Каталог продукции</h4>
+          </div>
+            {% for data in products %}
+            <div class="card">
+              <div class="row g-0">
+                <div class="col-4 col-sm-2">
+                  <img src='{%static data.item_image %}'  class="img-fluid" alt="Здесь будет соответсвующая картинка" width=300px height=300px>
+                </div>
+                <div class="col-8 col-sm-10">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ data.item_name }}</h5>
+                        <p class="card-text">{{ data.item_description }}</p>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</body>
+{% endblock %}
+
+</html>
