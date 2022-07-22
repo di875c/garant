@@ -12,21 +12,28 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os, sys
+import dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Load env variables from file
+dotenv_file = BASE_DIR / ".env"
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g9&ym6fc1t#vo=xl(@ep%rx=405wqsas)r0(6p_$fno3yh7w*3'
+SECRET_KEY = os.environ.get('DJANGO_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.гарант-сталь.рф', 'www.garant-steel.ru']
 
 
 # Application definition
@@ -77,7 +84,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pensatm.wsgi.application'
-
+ASGI_APPLICATION = 'pensatm.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -86,6 +93,15 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': os.environ.get('DB_NAME'),
+    #     'USER': os.environ.get('DB_USER'),
+    #     'PASSWORD': os.environ.get('DB_PASSWORD'),
+    #     'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
+    #     'PORT': '3306',
+    # }project_information
+# }
     }
 }
 
@@ -134,10 +150,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'start_site/static')
 
 # E-mail settings
-EMAIL_HOST = 'smtp.beget.com'
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_PORT = 2525
-EMAIL_HOST_USER = "63@garant-steel.ru"
-EMAIL_HOST_PASSWORD = "zakaz_anton_22"
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 SERVER_EMAIL = EMAIL_HOST_USER
