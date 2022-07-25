@@ -56,4 +56,5 @@ class GalleryView(View):
 
 class ContactView(View):
     def get(self, request, *args, **kwargs):
-        return render(request, 'contact.html')
+        catalogs = Catalog.objects.all()
+        return render(request, 'contact.html', {'catalogs': catalogs})

@@ -56,7 +56,7 @@
         {% for data in catalogs %}
         <div class="col"><li><a href="catalog/{{ data.catalog_link }}">
         <div class="card bg-dark text-light">
-          <img src='{%static data.catalog_image %}'  class="card-img opacity-75" alt="card-img-overlay">
+          <img src='{{data.catalog_image.url}}'  class="card-img opacity-75" alt="card-img-overlay">
           <div class="card-img-overlay">
             <h5 class="card-title">{{ data.catalog_name }}</h5>
             <p class="card-text">{{data.catalog_description}}</p>

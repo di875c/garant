@@ -16,11 +16,11 @@
             <div class="col">
             <div class="card">
                <!-- Кнопка-триггер модального окна -->
-                <a  data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-link='{%static data.item_image %}'>
-                <img src='{%static data.item_image %}'  class="card-img-top-fluid w-100" alt="фото не найдено">
+                <a  data-bs-toggle="modal" data-bs-target="#galleryModal" data-bs-link='{{data.item_image.url}}'>
+                <img src='{{data.item_image.url}}'  class="card-img-top-fluid w-100" alt="фото не найдено">
                 </a>
               <div class="card-body">
-                <h5 class="card-title">{{ data.products }}</h5>
+                <h6 class="card-title">{{ data.products }}</h6>
                 <p class="card-text"><small class="text-muted">{{ data.item_description }}</small></p>
               </div>
             </div></div>
