@@ -1,5 +1,5 @@
 #Django
-Django==3.2.13
+Django==3.2.15
 django-timezone-field
 django-cors-headers
 django-debug-toolbar
